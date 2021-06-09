@@ -47,6 +47,13 @@ const actions = {
     },
     cancelEdit(state) {
         state.editIndex = null
+    },
+    switchFilter (state, filter) {
+        state.filter = filter;
+    },
+    clearCompleted(state) {
+        state.todos = state.todos.filter(state.filters.active);
+        storage.set(state.todos)
     }
 }
 

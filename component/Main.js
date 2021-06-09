@@ -3,7 +3,7 @@ import { connect } from '../js/store.js';
 import TodoList from './TodoList.js';
 
 
-function Main({todos, filters}) {
+function Main({todos, filter, filters}) {
     return html `
                 <section class="main">
                 <input id="toggle-all" class="toggle-all" type="checkbox"
@@ -12,7 +12,7 @@ function Main({todos, filters}) {
                 >
                 <label for="toggle-all">Mark all as complete</label>
                 <ul class="todo-list">
-                ${todos.map((todo,index) => TodoList({todo, index}))}
+                ${todos.filter(filters[filter]).map((todo,index) => TodoList({todo, index}))}
                 </ul>
                 </section>
                 `;

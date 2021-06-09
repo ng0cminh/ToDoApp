@@ -9,12 +9,13 @@ function Footer ({todos, filters, filter}) {
                 <ul class="filters">
                     ${Object.keys(filters).map(type => html `
                         <li>
-                            <a class="${filter == type && 'selected'}" href="#/">${type[0].toUpperCase() + type.slice(1)}</a>
+                            <a onclick = "dispatch('switchFilter', '${type}')"
+                             class="${filter == type && 'selected'}" href="#">${type[0].toUpperCase() + type.slice(1)}</a>
                         </li>
                     `)}
                 </ul>
-                <!-- Hidden if no completed items are left ↓ -->
-                <button class="clear-completed">Clear completed</button>
+                ${todos.filter(filters.completed).length > 0 &&
+                     html`<button onclick = "dispatch('clearCompleted')" class="clear-completed" onclick = "dispatch()">Clear completed</button>`}
                 </footer>
                 `;
 }
